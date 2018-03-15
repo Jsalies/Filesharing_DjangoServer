@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block title %}ajout de fichiers{% endblock %}
+{% block search %}
+<form action="{% url "add_files" 0 'none' %}" method="post">
+{% csrf_token %}
+{{ recherche.as_p }}
+<input type="submit" id="validation" name="search"/>
+</form>
+{% endblock %}
+{% block content %}
+{% load static %}
+<div id="addlist">
+	<label for="id_categorie">Catégorie d'ajout:</label>
+	<select name="categorie" id="choix">
+		<option value="films">films</option>
+		<option value="series">séries</option>
+		<option value="jeux">jeux</option>
+		<option value="logiciels">logiciels</option>
+		<option value="livres">livres</option>
+		<option value="musiques">musiques</option>
+	</select>
+</div>
+<div id="formlist">
+<div id="films">
+{% load bootstrap3 %}
+{% bootstrap_css %} 
+
+<form action="{% url "add_files" cible nom_recherche %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form addfilm %}
+    {% buttons %}
+    <button type="submit" class="btn btn-primary" id="submitbutton" name="film" value="valider">
+      {% bootstrap_icon "star" %} Ajouter
+    </button>
+  {% endbuttons %}
+</form>
+</div>
+<div id="series">
+<form action="{% url "add_files" cible nom_recherche %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form addserie %}
+    {% buttons %}
+    <button type="submit" class="btn btn-primary" id="submitbutton" name="serie" value="valider">
+      {% bootstrap_icon "star" %} Ajouter
+    </button>
+  {% endbuttons %}
+</form>
+</div>
+<div id="jeux">
+<form action="{% url "add_files" cible nom_recherche %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form addjeu %}
+    {% buttons %}
+    <button type="submit" class="btn btn-primary" id="submitbutton" name="jeu" value="valider">
+      {% bootstrap_icon "star" %} Ajouter
+    </button>
+  {% endbuttons %}
+</form>
+</div>
+<div id="logiciels">
+<form action="{% url "add_files" cible nom_recherche %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form addlogiciel %}
+    {% buttons %}
+    <button type="submit" class="btn btn-primary" id="submitbutton" name="logiciel" value="valider">
+      {% bootstrap_icon "star" %} Ajouter
+    </button>
+  {% endbuttons %}
+</form>
+</div>
+<div id="livres">
+<form action="{% url "add_files" cible nom_recherche %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form addlivre %}
+    {% buttons %}
+    <button type="submit" class="btn btn-primary" id="submitbutton" name="livre" value="valider">
+      {% bootstrap_icon "star" %} Ajouter
+    </button>
+  {% endbuttons %}
+</form>
+</div>
+<div id="musiques">
+<form action="{% url "add_files" cible nom_recherche %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form addmusique %}
+    {% buttons %}
+    <button type="submit" class="btn btn-primary" id="submitbutton" name="musique" value="valider">
+      {% bootstrap_icon "star" %} Ajouter
+    </button>
+  {% endbuttons %}
+</form>
+</div>
+</div>
+<div id="rappel_formulaire">{{formulaire}}</div>
+<link rel="stylesheet" href="{% static "css/add.css" %}" />
+<link rel="stylesheet" href="{% static "css/base.css" %}" />
+<script type="text/javascript" src="{% static "js/add.js" %}"></script>    
+{% endblock %}

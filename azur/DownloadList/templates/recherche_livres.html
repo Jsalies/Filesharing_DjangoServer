@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}recherche livres-page {{id_page}}{% endblock %}
+{% block search %}
+<form action="{% url "accueil" %}" method="post">
+{% csrf_token %}
+{{ recherche.as_p }}
+<input type="submit" id="validation" name="search"/>
+</form>
+{% endblock %}
+{% block content %}
+<script language="JavaScript" type="text/javascript"> 
+<!-- 
+function confirmDelete() { 
+ return confirm("Voulez vous vraiment supprimer ce fichier?")
+} 
+//--> 
+</script> 
+<div id="page_info"><h2>Recherche <b style="color:gray">{{nom}}</b> dans Livres <br> page {{id_page}} / {{pagination.num_pages}}</h2></div>
+
+{% for livre in liste_livres %}
+<div class="element_conteneur">
+	<div class="premier_etage">
+		<div class="premier_bloc">
+			<div class="titre">
+				<div>
+				<div>Titre : </div>
+				<div>{{livre.nom}}</div>
+				</div>
+			</div>
+			<div class="auteur">
+				<div>
+				<div>Auteur : </div>
+				<div>{{livre.auteur}}</div>
+				</div>
+			</div>
+			<div class="genre">
+				<div>
+				<div>Genre : </div>
+				<div>{{livre.Genre}}</div>
+				</div>
+			</div>
+			<div class="annee">
+				<div>
+				<div>Année : </div>
+				<div>{{livre.annee}}</div>
+				</div>
+			</div>
+			<div class="langage">
+				<div>
+				<div>Langage : </div>
+				<div>{{livre.langage}}</div>
+				</div>
+			</div>
+			<div class="nb_tele">
+				<div>
+				<div><img src="{% static "image/download.png" %}"></div>
+				<div><b>{{livre.nbTelechargement}}</b></div>
+				</div>
+			</div>
+			<div class="datedepot">
+				<div>
+				<div>Dépot : </div>
+				<div>{{livre.datedepot}}</div>
+				</div>
+			</div>
+			<div class="uploader">
+				<div>
+				<div>Uploader : </div>
+				<div>{{livre.uploader}}</div>
+				</div>
+			</div>
+		</div>
+			<div class="deuxieme_bloc">
+		    <div class="photo"><img src="{{ livre.photo.url}}"></div>
+	    </div>
+    </div>
+	<div class="troisieme_bloc">
+		   	<div class="resume">
+		   		<div>
+		   		<div>Résumé : </div>
+		   		<div>{{livre.resume}}</div>
+		   		</div>
+		   	</div>
+			<div class="fichier">
+				<div>
+					{% if request.user == livre.uploader or request.user.is_superuser %}
+					<a href="{% url "modifierlivre" livre.nom %}"><div>Modifier</div></a>
+					{% endif %}
+				</div><div>
+					<a href="{% url "telechargement_livre" livre.nom livre.auteur %}"><div>Télecharger</div></a>
+				</div><div>
+					{% if request.user == livre.uploader or request.user.is_superuser %}
+					<a href="{% url "supprimerlivre" livre.nom %}" onclick="return confirmDelete();" "><div>Supprimer</div></a>
+					{% endif %}
+				</div>
+			</div>
+	</div>
+</div>
+{% endfor %}
+
+<div id="pagination">
+{% for value in liste_pagination %}
+{% if value == "..." %}
+<div class="pagination_points">...</div>
+{% elif value == id_page %}
+<div class="pagination_okk">{{id_page}}</div>
+{% else %}
+<a href="{% url 'recherche_livres' value %}"><div class="pagination_ok">{{value}}</div></a>
+{% endif %}
+{% endfor %}
+</div>
+
+<link rel="stylesheet" href="{% static 'css/liste_livres.css' %}" />
+<script src="{% static 'js/liste_series.js' %}"></script>
+{% endblock %}

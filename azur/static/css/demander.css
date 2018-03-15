@@ -1,0 +1,175 @@
+#content
+{
+	margin-left: auto;
+	margin-right: auto;
+	padding: 20px;
+	width: 88%;
+	box-shadow: 0px 0px 25px 0px #888888;
+	border-bottom-left-radius: 10px; 
+	border-bottom-right-radius:10px;
+	background-color: white;
+	font-size: 0;
+	max-width: 800px;
+	text-align: center;
+}
+@font-face {
+    font-family: Brewsky;
+    src: url("/static/font/Brewsky.ttf");
+}
+@font-face {
+    font-family: titillium;
+    src: url("/static/font/Titillium-SemiboldUpright.otf");
+}
+
+@font-face {
+    font-family: caviar;
+    src: url("/static/font/CaviarDreams_BoldItalic.ttf");
+}
+h3
+{
+	font-size: 25px;
+	font-family: Brewsky;
+}
+h2
+{
+	font-size: 30px;
+	font-family: Brewsky;
+}
+#content > div
+{
+	overflow: hidden;
+	border-radius: 7px;
+	border-right: solid 1px black;
+}
+.films div div,.series div div,.jeux div div,.livres div div,.musiques div div,.logiciels div div
+{
+	display: inline-block;
+	font-size: 16px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-bottom: solid 1px black;
+	overflow: hidden;
+}
+.nom
+{
+	width: 34%;
+}
+.langage, .sous-titre
+{
+	width: 25%;
+}
+.remove
+{
+	width: 16%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.nom2
+{
+	width: 84%;
+}
+.remove img
+{
+	padding-top: 2px;
+	height: 18px;
+	margin-bottom: -2px;
+}
+.films > div, .series > div, .jeux > div, .livres > div, .musiques > div,.logiciels > div
+{
+	background: linear-gradient(to bottom, rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%);
+	font-family: titillium;
+}
+
+.films > div:nth-last-child(1), .series > div:nth-last-child(1), .jeux > div:nth-last-child(1), .livres > div:nth-last-child(1), .musiques > div:nth-last-child(1),.logiciels > div:nth-last-child(1)
+{
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+}
+.films > div:nth-child(1), .series > div:nth-child(1), .jeux > div:nth-child(1), .livres > div:nth-child(1), .musiques > div:nth-child(1),.logiciels > div:nth-child(1)
+{
+	border-top: solid 1px black;
+	border-top-right-radius: 7px;
+	border-top-left-radius: 7px;
+	background: linear-gradient(to bottom, rgba(157,213,58,1) 0%,rgba(161,213,79,1) 50%,rgba(128,194,23,1) 51%,rgba(124,188,10,1) 100%);	font-family: caviar;
+}
+.films > div, .series > div, .jeux > div, .livres > div, .musiques > div,.logiciels > div
+{
+	border-left: solid 1px black;
+	overflow: hidden
+}
+.nom, .langage, .sous-titre, .nom2
+{
+	border-right: solid 1px black;
+	margin-left: -1px;
+}
+.form1, .form2
+{
+	text-align: left;
+	font-size: 0;
+}
+.form1 input, .form2 input
+{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	width: 100%;
+	background: transparent;
+	margin-left: -1px;
+	text-align: center;
+
+}
+
+.form1 p:nth-last-child(1), .form2 p:nth-last-child(1)
+{
+	padding: 0;
+	margin: 0;
+	border-top: solid 1px gray;
+	padding-top: 3px;
+
+}
+.form1 p:nth-last-child(1) input, .form2 p:nth-last-child(1) input
+{
+	width: 20px;
+	height: 24px;
+	border: none;
+	background: url("/static/image/ajouter.png") no-repeat;
+	background-size: 100%;
+	outline: none;
+	cursor: pointer;
+}
+.form1 p, .form2 p
+{
+	margin-top: -1px;
+	display: inline-block;
+	overflow: hidden;
+	border-right: solid 1px black;
+	border-bottom: solid 1px black;
+	margin-left: -1px;
+}
+.form1 form p:nth-child(2)
+{
+	width: 34%;
+}
+.form1 form p:nth-child(3)
+{
+	width: 25%;
+}
+.form1 form p:nth-child(4)
+{
+	width: 25%;
+}
+.form1 form p:nth-child(5), .form2 form p:nth-child(3)
+{
+	width: 16%;
+	border-right: none;
+	text-align: center;
+}
+.form2 form p:nth-child(2)
+{
+	width: 84%;
+}
+.form1 img, .form2 img
+{
+	height: 18px;
+	filter: grayscale(80%);
+	padding-bottom: 5px;
+}

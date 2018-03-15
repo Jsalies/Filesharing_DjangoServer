@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Vos demandes{% endblock %}
+{% block search %}
+<form action="{% url "accueil" %}" method="post">
+{% csrf_token %}
+{{ recherche.as_p }}
+<input type="submit" id="validation" name="search"/>
+</form>
+{% endblock %}
+{% block content %}
+
+<h2>Vos demandes</h2>
+
+<h3>Films</h3>
+<div class="films">
+	<div>
+		<div class="nom">Nom</div>
+		<div class="langage">Langage</div>
+		<div class="sous-titre">Sous-titre</div>
+		<div class="remove">Supprimer</div>
+	</div>
+	{% for film in liste_films %}
+	<div>
+		<div class="nom">{{film.nom}}</div>
+		<div class="langage">{{film.langage}}</div>
+		<div class="sous-titre">{{film.soustitre}}</div>
+		<div class="remove"><a href="{% url "remove_film" film.nom film.langage film.soustitre %}"><img src="{% static "image/supprimer.png" %}"></a></div>
+	</div>
+	{% endfor %}
+	{% if qtt_film < 2 %}
+	<div class="form1">
+		<form action="{% url "demander" %}" method="post">
+			{% csrf_token %}
+			{{ askfilm.as_p }}
+			<p><input type="submit" name="film" value=""/></p>
+		</form>
+
+	</div>
+	{% endif %}
+</div>
+
+<h3>Series</h3>
+<div class="series">
+	<div>
+		<div class="nom">Nom</div>
+		<div class="langage">Langage</div>
+		<div class="sous-titre">Sous-titre</div>
+		<div class="remove">Supprimer</div>
+	</div>
+	{% for serie in liste_series %}
+	<div>
+		<div class="nom">{{serie.nom}}</div>
+		<div class="langage">{{serie.langage}}</div>
+		<div class="sous-titre">{{serie.soustitre}}</div>
+		<div class="remove"><a href="{% url "remove_serie" serie.nom serie.langage serie.soustitre %}"><img src="{% static "image/supprimer.png" %}"></a></div>
+	</div>
+	{% endfor %}
+	{% if qtt_serie < 2 %}
+	<div class="form1">
+		<form action="{% url "demander" %}" method="post">
+			{% csrf_token %}
+			{{ askserie.as_p }}
+			<p><input type="submit" name="serie" value=""/></p>
+		</form>
+	</div>
+	{% endif %}
+</div>
+
+<h3>Musiques</h3>
+<div class="musiques">
+	<div>
+		<div class="nom2">Nom</div>
+		<div class="remove">Supprimer</div>
+	</div>
+	{% for musique in liste_musiques %}
+	<div>
+		<div class="nom2">{{musique.nom}}</div>
+		<div class="remove"><a href="{% url "remove_musique" musique.nom %}"><img src="{% static "image/supprimer.png" %}"></a></div>
+	</div>
+	{% endfor %}
+	{% if qtt_musique < 2 %}
+	<div class="form2">
+		<form action="{% url "demander" %}" method="post">
+			{% csrf_token %}
+			{{ askmusique.as_p }}
+			<p><input type="submit" name="musique" value=""/></p>
+		</form>
+	</div>
+	{% endif %}
+</div>
+
+<h3>Jeux</h3>
+<div class="jeux">
+	<div>
+		<div class="nom2">Nom</div>
+		<div class="remove">Supprimer</div>
+	</div>
+	{% for jeu in liste_jeux %}
+	<div>
+		<div class="nom2">{{jeu.nom}}</div>
+		<div class="remove"><a href="{% url "remove_jeu" jeu.nom %}"><img src="{% static "image/supprimer.png" %}"></a></div>
+	</div>
+	{% endfor %}
+	{% if qtt_jeu < 2 %}
+	<div class="form2">
+		<form action="{% url "demander" %}" method="post">
+			{% csrf_token %}
+			{{ askjeu.as_p }}
+			<p><input type="submit" name="jeu" value=""/></p>
+		</form>
+	</div>
+	{% endif %}
+</div>
+
+<h3>Logiciels</h3>
+<div class="logiciels">
+	<div>
+		<div class="nom2">Nom</div>
+		<div class="remove">Supprimer</div>
+	</div>
+	{% for logiciel in liste_logiciels %}
+	<div>
+		<div class="nom2">{{logiciel.nom}}</div>
+		<div class="remove"><a href="{% url "remove_logiciel" logiciel.nom %}"><img src="{% static "image/supprimer.png" %}"></a></div>
+	</div>
+	{% endfor %}
+	{% if qtt_logiciel < 2 %}
+	<div class="form2">
+		<form action="{% url "demander" %}" method="post">
+			{% csrf_token %}
+			{{ asklogiciel.as_p }}
+			<p><input type="submit" name="logiciel" value=""/></p>
+		</form>
+	</div>
+	{% endif %}
+</div>
+
+<h3>Livres</h3>
+<div class="livres">
+	<div>
+		<div class="nom2">Nom</div>
+		<div class="remove">Supprimer</div>
+	</div>
+	{% for livre in liste_livres %}
+	<div>
+		<div class="nom2">{{livre.nom}}</div>
+		<div class="remove"><a href="{% url "remove_livre" livre.nom %}"><img src="{% static "image/supprimer.png" %}"></a></div>	</div>
+	{% endfor %}
+	{% if qtt_livre < 2 %}
+	<div class="form2">
+		<form action="{% url "demander" %}" method="post">
+			{% csrf_token %}
+			{{ asklivre.as_p }}
+			<p><input type="submit" name="livre" value=""/></p>
+		</form>
+	</div>
+	{% endif %}
+</div>
+
+
+<link rel="stylesheet" href="{% static "css/demander.css" %}" />
+{% endblock %}

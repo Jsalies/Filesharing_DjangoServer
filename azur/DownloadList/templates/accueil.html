@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Accueil{% endblock %}
+{% block search %}
+<form action="{% url "accueil" %}" method="post">
+{% csrf_token %}
+{{ recherche.as_p }}
+<input type="submit" name="search" id="validation"/>
+</form>
+{% endblock %}
+{% block content %}
+{% if inscription == 1 %}
+<div id="alertband"><div>Inscription réussie!!!</div></div>
+<link rel="stylesheet" href="{% static "css/alertband.css" %}" />
+<script type="text/javascript" src="{% static "js/alertband.js" %}"></script>
+{% elif inscription == 2 and user.is_authenticated %}
+<div id="alertband"><div>Bienvenue {{ user.username }}</div></div>
+<link rel="stylesheet" href="{% static "css/alertband.css" %}" />
+<script type="text/javascript" src="{% static "js/alertband.js" %}"></script>
+{% elif inscription == 3 and user.is_authenticated %}
+<div id="alertband"><div>Fichier ajouté</div></div>
+<link rel="stylesheet" href="{% static "css/alertband.css" %}" />
+<script type="text/javascript" src="{% static "js/alertband.js" %}"></script>
+{% elif inscription == 4 and user.is_authenticated %}
+<div id="alertband"><div>Suppression réussie</div></div>
+<link rel="stylesheet" href="{% static "css/alertband.css" %}" />
+<script type="text/javascript" src="{% static "js/alertband.js" %}"></script>
+{% elif inscription == 5 and user.is_authenticated %}
+<div id="alertband"><div>Modification réussie</div></div>
+<link rel="stylesheet" href="{% static "css/alertband.css" %}" />
+<script type="text/javascript" src="{% static "js/alertband.js" %}"></script>
+{% elif inscription == 6 and user.is_authenticated %}
+<div id="alertband"><div>Echec de la modification/suppression</div></div>
+<link rel="stylesheet" href="{% static "css/alertband.css" %}" />
+<script type="text/javascript" src="{% static "js/alertband.js" %}"></script>
+{% elif inscription == 7 and user.is_authenticated %}
+<div id="alertband"><div>Ce fichier ne vous appartient pas</div></div>
+<link rel="stylesheet" href="{% static "css/alertband.css" %}" />
+<script type="text/javascript" src="{% static "js/alertband.js" %}"></script>
+{% endif %}
+
+<div id="content2">
+<h2><img src="{% static "image/bande.png"  %}">Azur<img src="{% static "image/bande.png"  %}"></h2>
+<h3>Un peu de pipeau.</h3>
+<p>
+    Pour comprendre un peu comment fonctionne azur (et aussi pour remplir la page d'accueil qui serait bien vide sinon), je vais détailler un peu le principe d'azur.
+</p>
+<h3>Qu'est ce que c'est?</h3>
+<p>
+    Azur est une plateforme de partage de fichiers destinée aux résidents de la meuh. Elle permet notamment de stocker des films, des séries, des musiques, des jeux, des logiciels et des livres pour les mettre à disposition des autres utilisateurs du réseau. Azur est uniquement accessible à partir du réseau de la meuh. Cette plateforme à déjà été recréée deux fois mais a malheureusement rencontré quelques problèmes d'ordre technique. Cette nouvelle version se veut plus propre et avancée que la version précedente. Le site est complêtement codé en Html, css, javascript et django (python).
+</p>
+<h3>Comment ça marche?</h3>
+<p>
+    Azur vous permet de récupérer plein de fichiers mais a aussi besoin de vous ! En effet, si vous avez des fichiers qui peuvent être utiles aux autres résidents de la meuh, vous pouvez les stocker sur azur pour leur éviter de les télécharger. Cela vous permettra aussi d'avoir une meilleure connexion puisque ces derniers n'utiliseront pas la connexion internet pour aller chercher leurs fichiers.
+</p>
+<h3>Pourquoi se connecter?</h3>
+<p>
+    C'est la première fois que azur à un système de connexion mais pourquoi? Dans les anciennes versions de azur, seuls les roots (à partir de la console donc c'était bien moche) pouvaient modifier les paramètres des fichiers déjà ajoutés. Résultat : si vous faisiez une erreur lors de l'ajout d'un fichier, sauf si vos roots bien aimés étaient très très motivés, c'était impossible de le corriger. Maintenant, il est possible de savoir qui a ajouté un fichier et donc de lui donner la permition de modifier la description. Si vous ne souhaitez plus partager un fichier pour n'importe quelle raison, vous pouvez même le supprimer.
+
+    Autre nouvelle fonction, vous pouvez faire une demande sur azur lorsque vous cherchez un fichier qui n'est pas répertorié. Vous êtes autorisés à faire 2 demandes par type de fichier par utilisateur (livre, film, etc...). Si quelqu'un possède le fichier, il pourra l'ajouter à partir de votre demande. Une fois le fichier ajouté, votre demande disparaîtra. Vous pouvez vous-même supprimer votre demande si vous ne souhaitez plus obtenir le fichier en question. Le maximum de demande tous utilisateurs confondus est de 30 demandes par type de fichier. Si le nombre de requêtes dépasse ce seuil, les plus anciennes requêtes seront supprimées. Cela permettra de ne pas surcharger les demandes.
+</p>
+<h3>Comment ajouter un fichier?</h3>
+<p>
+    Pour ajouter un fichier, vous devez d'abord vous connecter. Un fois fait, vous pouvez accéder au menu d'ajout à partir d'"ajouter" dans le menu. Une limitation par type de fichier à été mise en place. Faites bien attention à respecter les exemples donnés dans les formulaires. Le formulaire ne vous indiquera pas les erreurs avant d'avoir tenté d'envoyer le fichier. Cela veut dire que si vous envoyez un fichier assez lourd, vous aller attendre 20 minutes juste pour que le formulaire vous engueule... puis vous devrez recommencer. Vérifiez aussi que le fichier que vous ajoutez n'existe pas déjà dans la base de données.
+</p>
+<h3>Si vous rencontrez des problèmes.</h3>
+<p>
+    Malheureusement, j'ai fait le site complet sans pouvoir tout tester. Je suis donc prêt à prendre vos retours si vous observez des problèmes. Pour les problèmes de design, sachez que j'ai tout vérifié sur Google chrome donc il peut y avoir quelques problèmes d'affichage sur FireFox. Pour ceux qui ont internet explorer (ou "Edge"), vous n'avez qu'à changer de navigateur (ça vient de microsoft... ça peut pas marcher correctement!). Pour les problèmes liés aux options de Azur (connexion, inscription, etc...), je vous invite vivement à me les signaler avant que je parte. Bien sûr j'attends vos retours dans la bonne humeur 🙂 (sinan ça part en RC).
+</p>
+<h4>Jimmy</h4>
+
+<div id="info_disque">Espace disponible : {{freespace}} Go / {{totalspace}} Go</div>
+<div id="bar_remplissage" style="background-size: {{used_percent}}% 100%;">{{used_percent}}% utilisé ({{usedspace}} Go)</div>
+</div>
+
+
+
+<link rel="stylesheet" href="{% static "css/accueil.css" %}" />
+{% endblock %}

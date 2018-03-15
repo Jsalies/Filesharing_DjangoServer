@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}series-page {{id_page}}{% endblock %}
+{% block search %}
+<form action="{% url "accueil" %}" method="post">
+{% csrf_token %}
+{{ recherche.as_p }}
+<input type="submit" id="validation" name="search"/>
+</form>
+{% endblock %}
+
+
+{% block content %}
+<script language="JavaScript" type="text/javascript"> 
+<!-- 
+function confirmDelete() { 
+ return confirm("Voulez vous vraiment supprimer ce fichier?")
+} 
+//--> 
+</script> 
+<div id="page_info"><h2>Series : page {{id_page}} / {{pagination.num_pages}}</h2></div>
+
+{% for serie in liste_series %}
+<div class="element_conteneur">
+	<div class="premier_etage">
+		<div class="premier_bloc">
+			<div class="titre">
+				<div>
+				<div>Titre : </div>
+				<div>{{serie.titre}}</div>
+				</div>
+			</div>
+			<div class="genre">
+				<div>
+				<div>Genre : </div>
+				<div>{{serie.Genre}}</div>
+				</div>
+			</div>
+			<div class="nbepisodes">
+				<div>
+				<div>Nb Episodes : </div>
+				<div>{{serie.nbepisodes}}</div>
+				</div>
+			</div>
+			<div class="annee">
+				<div>
+				<div>Année : </div>
+				<div>{{serie.annee}}</div>
+				</div>
+			</div>
+			<div class="plateforme">
+				<div>
+				<div>Réalisation : </div>
+				<div>{{serie.plateforme}}</div>
+				</div>
+			</div>
+			<div class="qualite">
+				<div>
+				<div>Qualité : </div>
+				<div>{{serie.qualite}}</div>
+				</div>
+			</div>
+			<div class="langage">
+				<div>
+				<div>Langage : </div>
+				<div>{{serie.langage}}</div>
+				</div>
+			</div>
+			<div class="soustitre">
+				<div>
+				<div>Subs : </div>
+				<div>{{serie.soustitre}}</div>
+				</div>
+			</div>
+			<div class="nb_tele">
+				<div>
+				<div><img src="{% static "image/download.png" %}"></div>
+				<div><b>{{serie.nbTelechargement}}</b></div>
+				</div>
+			</div>
+			<div class="datedepot">
+				<div>
+				<div>Dépot : </div>
+				<div>{{serie.datedepot}}</div>
+				</div>
+			</div>
+			<div class="uploader">
+				<div>
+				<div>Uploader : </div>
+				<div>{{serie.uploader}}</div>
+				</div>
+			</div>
+		</div>
+			<div class="deuxieme_bloc">
+		    <div class="photo"><img src="{{ serie.photo.url}}"></div>
+	    </div>
+    </div>
+	<div class="troisieme_bloc">
+		   	<div class="synopsis">
+		   		<div>
+		   		<div>Synopsis : </div>
+		   		<div>{{serie.synopsis}}</div>
+		   		</div>
+		   	</div>
+			<div class="fichier">
+				<div>
+					{% if request.user == serie.uploader or request.user.is_superuser %}
+					<a href="{% url "modifierserie" serie.titre %}"><div>Modifier</div></a>
+					{% endif %}
+				</div><div>
+					<a href="{% url "telechargement_serie" serie.titre serie.annee %}"><div>Télecharger</div></a>
+				</div><div>
+					{% if request.user == serie.uploader or request.user.is_superuser %}
+					<a href="{% url "supprimerserie" serie.titre %}" onclick="return confirmDelete();" "><div>Supprimer</div></a>
+					{% endif %}
+				</div>
+			</div>
+	</div>
+</div>
+{% endfor %}
+
+<div id="pagination">
+{% for value in liste_pagination %}
+{% if value == "..." %}
+<div class="pagination_points">...</div>
+{% elif value == id_page %}
+<div class="pagination_okk">{{id_page}}</div>
+{% else %}
+<a href="{% url 'afficher_series' value %}"><div class="pagination_ok">{{value}}</div></a>
+{% endif %}
+{% endfor %}
+</div>
+
+<link rel="stylesheet" href="{% static 'css/liste_series.css' %}" />
+<script src="{% static 'js/liste_series.js' %}"></script>
+
+{% endblock %}

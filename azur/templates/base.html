@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+   <title>{% block title %}Azur{% endblock %}</title>
+</head>
+<body>
+    <nav>
+        {% block nav %}
+        <link rel="stylesheet" href="{% static "css/base.css" %}" />
+        {% if not inscription %}
+        <div id="retour_accueil">
+	        <div>
+	        	<a href="{% url "accueil" %}"><img src="{% static "image/retour.png" %}">accueil</a>
+        	</div>
+        </div>
+        {% endif %}
+       	<div id="administration">
+		    	{% if user.is_authenticated %}
+				<div>{{ user.username }}&nbsp;|&nbsp;
+				<a href="{% url "deconnexion" %}">Déconnexion</a></div>
+				{% else %}
+				<div><a href="{% url "connexion" %}">Connexion</a> / 
+				<a href="{% url "inscription" %}">Inscription</a></div>
+				{% endif %}
+		</div>
+        <div id="menu">
+        	<a href="{% url "afficher_series" 1 %}"><div id="menu1" class="menu"><div style="background: url({% static "image/series.jpg" %}) no-repeat; background-size: 100% 90%;"></div><span>Series</span></div></a>
+	        <a href="{% url "afficher_films" 1 %}"><div id="menu2" class="menu"><div style="background: url({% static "image/films.jpg" %}) no-repeat; background-size: 100% 90%;"></div><span>Films</span></div></a>
+	        <a href="{% url "afficher_jeux" 1 %}"><div id="menu3" class="menu"><div style="background: url({% static "image/jeux.jpg" %}) no-repeat; background-size: 100% 90%;"></div><span>Jeux</span></div></a>
+	        <a href="{% url "afficher_logiciels" 1 %}"><div id="menu4" class="menu"><div style="background: url({% static "image/logiciels.jpg" %}) no-repeat; background-size: 100% 90%;"></div><span>Logiciels</span></div></a>
+	        <a href="{% url "afficher_livres" 1 %}"><div id="menu5" class="menu"><div style="background: url({% static "image/livres.jpg" %}) no-repeat; background-size: 100% 90%;"></div><span>Livres</span></div></a>
+	        <a href="{% url "afficher_musiques" 1 %}"><div id="menu6" class="menu"><div style="background: url({% static "image/musiques.jpg" %}) no-repeat; background-size: 100% 90%;"></div><span>Musiques</span></div></a>
+        </div>
+		<div id="toolbar">
+		    <div id="search">
+		    	{% block search %}{% endblock %}
+		    </div>
+		    <div id="toolbarmenu">
+				    <a href="{% url "add_files" 0 'none' %}" class="toolbarbutton">
+				    	<div id="ajout">Ajouter</div>
+				    </a>
+				    <a href="{% url "demander" %}" class="toolbarbutton">
+				    	<div id="ajout">Demander</div>
+				    </a>
+				    <a href="{% url "liste_demandes" %}" class="toolbarbutton">
+				    	<div id="ajout">Liste de demandes</div>
+				    </a>
+			</div>
+		</div>
+        <script type="text/javascript" src="{% static "js/menu.js" %}"></script>
+       {% endblock %}
+   </nav>
+   <section id="content">
+       {% block content %}{% endblock %}
+   </section>
+<footer id="footer">&copy; Pipeau-Emse</footer>
+</body>
+</html>

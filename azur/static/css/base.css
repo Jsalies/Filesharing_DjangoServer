@@ -1,0 +1,272 @@
+body
+{
+    padding: 0;
+    margin: 0;
+    background-color: azure;
+    min-width: 657px;
+}
+#menu
+{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+.menu
+{
+    width: 25%;
+    padding-bottom: 15%;
+    margin-right: -10%;
+    display: inline-block;
+    transform: skewX(25deg);
+    overflow: hidden;
+    border-left: 1px solid black;
+}
+#menu1
+{
+    transform: skewX(0deg);
+    overflow: hidden;
+}
+
+#menu2 div,#menu3 div,#menu4 div,#menu5 div,#menu6 div
+{
+    transform: skewX(-25deg);
+    position: absolute;
+    width: 130%;
+    margin-left: -20.9%;
+    height: 130%;
+    background-size: 100% 90%;
+    pointer-events: none;    /* allow pointer events for the box */
+}
+#menu1 div
+{
+    position: absolute;
+    width: 130%;
+    margin-left: -20%;
+    height: 130%;
+    background-size: 100% 90%;
+    pointer-events: none;    /* allow pointer events for the box */
+
+}
+.menu span
+{
+    display: block;
+    width: 120%;
+    position: relative;
+    background: DimGray;
+    opacity: 0.8;
+    padding-left: 65px;
+    vertical-align: middle;
+    font-family: fantasy;
+    font-size: 16px;
+    color: aliceblue;
+    margin-left: -10%;
+    transform: skewX(-25deg);
+    top: 100px;
+    transition: top 0.2s ease;
+    transition: font-size 0.2s ease;
+    text-align: left;
+
+}
+#menu1 span
+{
+    transform: skewX(0deg);
+}
+
+.menu:hover span
+{
+    color: black;
+    background: white;
+    transition: 0.6s; 
+}
+/*toolbar*/
+#toolbar
+{  
+    position: relative;
+    margin-top: -7px;
+    width: 100%;
+    background: linear-gradient( #555, #2C2C2C);
+    text-shadow: 0px 1px 0px rgba( 255, 255, 255, 0.2);
+    box-shadow: 0 0 5px rgba( 0, 0, 0, 0.5),
+                 0 -1px 0 rgba( 255, 255, 255, 0.4);
+    z-index: 2;
+    overflow: hidden;
+    height: 35px;
+}
+/* Bar de recherche*/
+#search
+{
+    display: inline-block;
+}
+#search *
+{
+    margin: 0;
+    padding: 0;
+    margin-top: 2px;
+}
+#search label, #validation
+{
+    display: none;
+}
+#search p
+{
+    display: inline;
+}
+#search input
+{
+    border: 1px solid LightSlateGrey;
+    background-color: #ededef;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    margin-left: 12px;
+    padding-left: 28px;
+}
+#search input:focus {
+
+    border: 1px solid gray;
+}
+#search select
+{
+    opacity: 0.8;
+    background-color: #ededef;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-left: -4px;
+    margin-right: 10px;
+}
+
+/*menu ajout/demande/liste*/
+#toolbarmenu a
+{
+    text-decoration: none;
+    color: white;
+}
+#toolbarmenu
+{
+    position: absolute;
+    display: inline-block;
+    right: 0px;
+}
+#toolbarmenu div:hover
+{
+    border: 1px solid rgba(223,190,106,0);
+    background-position: 99% 50%;
+    color: white;
+}
+#toolbarmenu div
+{
+    display: inline-flex;
+    margin-left: -4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    vertical-align: middle;
+    background: transparent;
+    font-size: 10px;
+    text-transform: uppercase;
+    font-family: "Helvetica Neue", Helvetica, Arials, sans;
+    letter-spacing: 0.3em;
+    color: rgba(223,190,106,0.7);
+    background: linear-gradient(270deg, rgba(223,190,106,0.8), rgba(146,111,52,0.8), rgba(34,34,34,0), rgba(34,34,34,0));
+    background-position: 1% 50%;
+    background-size: 300% 300%;
+    border: 1px solid rgba(223,190,106,0.3);
+    align-items: center;
+    transition: all 1s;
+}
+/*administration*/
+#administration a, #retour_accueil a
+{
+    text-decoration: none;
+    color: rgba(223,190,106,0.7);;
+    text-shadow: 0px 1px 0px rgba( 255, 255, 255, 0.2);
+    transition: 0.3s;
+}
+#administration div, #retour_accueil div
+{    
+    display: inline-flex;
+    border-bottom-left-radius: 10px;
+    padding-left: 7px;
+    padding-right: 3px;
+    padding-bottom: 2px;
+    vertical-align: middle;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    color: rgba(223,190,106,0.7);
+    background: linear-gradient(270deg, rgba(223,190,106,0.8), rgba(146,111,52,0.8), rgba(34,34,34,0), rgba(34,34,34,0));
+    background-position: 1% 50%;
+    background-size: 300% 300%;
+    border: 1px solid rgba(223,190,106,0.3);
+    align-items: center;
+    background: linear-gradient( #555, #2C2C2C);
+}
+#administration a:hover
+{
+    color: white;
+}
+/*valeurs variables*/
+#toolbarmenu, #toolbarmenu div
+{
+    height: 35px;
+}
+#administration, #administration div, #retour_accueil, #retour_accueil div
+{
+    height: 20px;
+}
+#search, #search input, #search select
+{
+    height: 25px;
+}
+#search select
+{
+    height: 27px;
+}
+#search, #administration, #toolbarmenu, #retour_accueil
+{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+#administration, #retour_accueil
+{
+    position: relative;
+    width: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+#administration > div
+{
+    position: relative;
+    float: right;
+    pointer-events: auto;
+}
+#retour_accueil > div
+{
+    position: relative;
+    float: left;
+    pointer-events: auto;
+    border-radius: 0;
+    border-bottom-right-radius: 10px;
+}
+#administration, #administration > div, #retour_accueil > div, #retour_accueil
+{
+    margin-bottom: -24px;
+}
+#retour_accueil img
+{
+    height: 15px;
+    padding-right: 5px;
+    margin-bottom: -3px;
+    filter: invert(60%);
+    transition: filter 0.3s;
+}
+#retour_accueil a:hover
+{
+    color: white;
+}
+#retour_accueil a:hover img
+{
+    filter: invert(100%);
+}
+#retour_accueil a
+{
+    padding-bottom: 1px;
+}

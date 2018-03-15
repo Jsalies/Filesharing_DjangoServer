@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}films-page {{id_page}}{% endblock %}
+{% block search %}
+<form action="{% url "accueil" %}" method="post">
+{% csrf_token %}
+{{ recherche.as_p }}
+<input type="submit" id="validation" name="search"/>
+</form>
+{% endblock %}
+
+
+{% block content %}
+<script language="JavaScript" type="text/javascript"> 
+<!-- 
+function confirmDelete() { 
+ return confirm("Voulez vous vraiment supprimer ce fichier?")
+} 
+//--> 
+</script>
+<div id="page_info"><h2>Films : page {{id_page}} / {{pagination.num_pages}}</h2></div>
+
+{% for film in liste_films %}
+<div class="element_conteneur">
+	<div class="premier_etage">
+		<div class="premier_bloc">
+			<div class="titre">
+				<div>
+				<div>Titre : </div>
+				<div>{{film.titre}}</div>
+				</div>
+			</div>
+			<div class="genre">
+				<div>
+				<div>Genre : </div>
+				<div>{{film.Genre}}</div>
+				</div>
+			</div>
+			<div class="annee">
+				<div>
+				<div>Année : </div>
+				<div>{{film.annee}}</div>
+				</div>
+			</div>
+			<div class="realisateur">
+				<div>
+				<div>Réalisateur : </div>
+				<div>{{film.realisateur}}</div>
+				</div>
+			</div>
+			<div class="qualite">
+				<div>
+				<div>Qualité : </div>
+				<div>{{film.qualite}}</div>
+				</div>
+			</div>
+			<div class="langage">
+				<div>
+				<div>Langage : </div>
+				<div>{{film.langage}}</div>
+				</div>
+			</div>
+			<div class="soustitre">
+				<div>
+				<div>Subs : </div>
+				<div>{{film.soustitre}}</div>
+				</div>
+			</div>
+			<div class="nb_tele">
+				<div>
+				<div><img src="{% static "image/download.png" %}"></div>
+				<div><b>{{film.nbTelechargement}}</b></div>
+				</div>
+			</div>
+			<div class="datedepot">
+				<div>
+				<div>Dépot : </div>
+				<div>{{film.datedepot}}</div>
+				</div>
+			</div>
+			<div class="uploader">
+				<div>
+				<div>Uploader : </div>
+				<div>{{film.uploader}}</div>
+				</div>
+			</div>
+		</div>
+			<div class="deuxieme_bloc">
+		    <div class="photo"><img src="{{ film.photo.url}}"></div>
+	    </div>
+    </div>
+	<div class="troisieme_bloc">
+		   	<div class="synopsis">
+		   		<div>
+		   		<div>Synopsis : </div>
+		   		<div>{{film.synopsis}}</div>
+		   		</div>
+		   	</div>
+			<div class="fichier">
+				<div>
+					{% if request.user == film.uploader or request.user.is_superuser %}
+					<a href="{% url "modifierfilm" film.titre %}"><div>Modifier</div></a>
+					{% endif %}
+				</div><div>
+					<a href="{% url "telechargement_film" film.titre film.annee %}"><div>Télecharger</div></a>
+				</div><div>
+					{% if request.user == film.uploader or request.user.is_superuser %}
+					<a href="{% url "supprimerfilm" film.titre %}" onclick="return confirmDelete();" "><div>Supprimer</div></a>
+					{% endif %}
+				</div>
+			</div>
+	</div>
+</div>
+{% endfor %}
+
+<div id="pagination">
+{% for value in liste_pagination %}
+{% if value == "..." %}
+<div class="pagination_points">...</div>
+{% elif value == id_page %}
+<div class="pagination_okk">{{id_page}}</div>
+{% else %}
+<a href="{% url 'afficher_films' value %}"><div class="pagination_ok">{{value}}</div></a>
+{% endif %}
+{% endfor %}
+</div>
+
+<link rel="stylesheet" href="{% static 'css/liste_films.css' %}" />
+<script src="{% static 'js/liste_series.js' %}"></script>
+
+{% endblock %}

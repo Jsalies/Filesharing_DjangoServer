@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Connexion{% endblock %}
+{% block nav %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static "css/connexion.css" %}" />
+<div id="connexion"><div><h1>Connexion</h1>
+<img src="{% static "image/connexion.png" %}">
+{% if error %}
+<p><strong>Utilisateur inconnu ou mauvais de mot de passe.</strong></p>
+{% endif %}
+
+{% if user.is_authenticated %}
+<p>Vous êtes connecté, {{ user.username }} !</p>
+{% else %}
+<form method="post" action="{% url "connexion" %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Se connecter" />
+</form>
+<p>pas encore de compte? <a href="inscription">s'inscrire</a></p>
+</div>
+</div>
+{% endif %}
+{% endblock %}

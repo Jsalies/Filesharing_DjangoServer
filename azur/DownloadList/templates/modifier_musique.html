@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}modifier musique{% endblock %}
+
+{% block search %}
+<form action="{% url "add_files" 0 'none' %}" method="post">
+{% csrf_token %}
+{{ recherche.as_p }}
+<input type="submit" id="validation" name="search"/>
+</form>
+{% endblock %}
+
+{% block content %}
+<h2>Modification de fichier</h2>
+<div id="films">
+{% load bootstrap3 %}
+{% bootstrap_css %} 
+
+<form action="{% url "modifiermusique" artiste titre %}" method="post" enctype="multipart/form-data">
+	{% if error %}
+	<label id="already_used">Combinaison Artiste/Titre déja utilisé par un autre fichier</label>
+	{% endif %}
+    {% csrf_token %}
+    {% bootstrap_form musique_a_modifier %}
+    {% buttons %}
+    <button type="submit" class="btn btn-primary" id="submitbutton" name="modifiermusique" value="valider">
+      {% bootstrap_icon "star" %} Ajouter
+    </button>
+  {% endbuttons %}
+</form>
+
+</div>
+
+<link rel="stylesheet" href="{% static "css/add.css" %}" />
+<link rel="stylesheet" href="{% static "css/base.css" %}" />
+{% endblock %}

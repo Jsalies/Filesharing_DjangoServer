@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Inscription{% endblock %}
+{% block nav %}{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static "css/connexion.css" %}" />
+<div id="connexion">
+<div>
+	<h1>Inscription</h1>
+{% if inscrit %}
+    <p>Inscription réussie.</p>
+{% else %}
+	<form method="post" action="{% url "inscription" %}">
+	    {% csrf_token %}
+	    {{ form.as_p }}
+	    <input type="submit" value="Se connecter" />
+	</form>
+	</div>
+</div>
+{% endif %}
+{% endblock %}

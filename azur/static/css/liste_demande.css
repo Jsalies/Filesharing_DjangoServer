@@ -1,0 +1,111 @@
+#content
+{
+	margin-left: auto;
+	margin-right: auto;
+	padding: 20px;
+	width: 88%;
+	box-shadow: 0px 0px 25px 0px #888888;
+	border-bottom-left-radius: 10px; 
+	border-bottom-right-radius:10px;
+	background-color: white;
+	font-size: 0;
+	max-width: 800px;
+	text-align: center;
+}
+@font-face {
+    font-family: Brewsky;
+    src: url("/static/font/Brewsky.ttf");
+}
+@font-face {
+    font-family: titillium;
+    src: url("/static/font/Titillium-SemiboldUpright.otf");
+}
+
+@font-face {
+    font-family: caviar;
+    src: url("/static/font/CaviarDreams_BoldItalic.ttf");
+}
+h3
+{
+	font-size: 25px;
+	font-family: Brewsky;
+}
+h2
+{
+	font-size: 30px;
+	font-family: Brewsky;
+}
+#content > div
+{
+	overflow: hidden;
+	border-radius: 7px;
+	border-right: solid 1px black;
+}
+.films div div,.series div div,.jeux div div,.livres div div,.musiques div div,.logiciels div div,.empty
+{
+	display: inline-block;
+	font-size: 16px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-bottom: solid 1px black;
+	overflow: hidden;
+}
+.nom
+{
+	width: 30%;
+}
+.ajouter
+{
+	width: 5%;
+}
+.demandeur, .demandeur2
+{
+	width: 25%;
+}
+.langage, .sous-titre
+{
+	width: 20%;
+}
+.nom2
+{
+	width: 70%;
+}
+.films > div, .series > div, .jeux > div, .livres > div, .musiques > div,.logiciels > div
+{
+	background: linear-gradient(to bottom, rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%);
+	font-family: titillium;
+}
+
+.films > div:nth-last-child(1), .series > div:nth-last-child(1), .jeux > div:nth-last-child(1), .livres > div:nth-last-child(1), .musiques > div:nth-last-child(1),.logiciels > div:nth-last-child(1)
+{
+	border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+}
+.films > div:nth-child(1), .series > div:nth-child(1), .jeux > div:nth-child(1), .livres > div:nth-child(1), .musiques > div:nth-child(1),.logiciels > div:nth-child(1)
+{
+	border-top: solid 1px black;
+	border-top-right-radius: 7px;
+	border-top-left-radius: 7px;
+	background: linear-gradient(to bottom, rgba(252,234,187,1) 0%,rgba(252,205,77,1) 50%,rgba(248,181,0,1) 51%,rgba(251,223,147,1) 100%);
+	font-family: caviar;
+}
+.films > div, .series > div, .jeux > div, .livres > div, .musiques > div,.logiciels > div
+{
+	border-left: solid 1px black;
+	overflow: hidden
+}
+.nom, .langage, .sous-titre, .nom2, .demandeur, .demandeur2
+{
+	border-right: solid 1px black;
+	margin-left: -1px;
+}
+.empty
+{
+	width: 100%;
+}
+.ajouter img
+{
+	margin-top: -4px;
+	height: 18px;
+	margin-bottom: -2px;
+}
