@@ -19,11 +19,11 @@ MEDIA_URL = '/media/'
 
 #max_size en Go
 MAX_UPLOAD_SIZE_MUSIQUE=2
-MAX_UPLOAD_SIZE_LOGICIEL=100
-MAX_UPLOAD_SIZE_JEU=100
-MAX_UPLOAD_SIZE_SERIE=100
-MAX_UPLOAD_SIZE_FILM=50
-MAX_UPLOAD_SIZE_LIVRE=2
+MAX_UPLOAD_SIZE_LOGICIEL=70
+MAX_UPLOAD_SIZE_JEU=70
+MAX_UPLOAD_SIZE_SERIE=70
+MAX_UPLOAD_SIZE_FILM=40
+MAX_UPLOAD_SIZE_LIVRE=1
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
