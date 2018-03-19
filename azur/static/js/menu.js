@@ -72,6 +72,23 @@ function addtransition()
     {
         menu[i].style.transition = "0.7s ease-in-out";
     }
+    toolbar=document.getElementById("toolbarmenu").getElementsByTagName("DIV")
+    for(var i=0; i<toolbar.length;i++)
+    {
+        toolbar[i].style.transition = "color 0.5s,background-position 1s";
+    }
+    
+    toolbar2=document.getElementById("administration").getElementsByTagName("A");
+    for(var i=0; i<toolbar2.length;i++)
+    {
+        toolbar2[i].style.transition = "color 0.5s";
+    }
+    
+     toolbar3=document.getElementById("retour_accueil").getElementsByTagName("A");
+    for(var i=0; i<toolbar3.length;i++)
+    {
+        toolbar3[i].style.transition = "color 0.5s";
+    }
 }
 
 addtransition()

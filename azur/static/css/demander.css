@@ -173,3 +173,10 @@ h2
 	filter: grayscale(80%);
 	padding-bottom: 5px;
 }
+
+@-moz-document url-prefix() {
+	.form1 p:nth-last-child(1) input, .form2 p:nth-last-child(1) input
+	{
+		height: 26px;
+	}
+}
